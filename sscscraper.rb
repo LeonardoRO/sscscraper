@@ -11,7 +11,7 @@ url = ARGV[0].strip
 begin
   open(url, "User-Agent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36") do |source|
     source.each_line do |x|
-      if x !~ /skyscrapercity.com/i && x !~ /googlesyndication.com/ && x !~ /doubleclick.net/
+      if x !~ /skyscrapercity.com/i && x !~ /googlesyndication.com/ && x !~ /doubleclick.net/ && x !~ /big-boards.com/
         if x =~ /<img src="(https?:\/\/.*\.(?:png|jpg))/i
         name = $1.split('"').first
 
