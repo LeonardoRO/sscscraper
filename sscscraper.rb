@@ -1,5 +1,6 @@
 require "open-uri"
 require "pathname"
+require "colorize"
 
 unless ARGV[0]
   puts "Use ruby sscscraper.rb <url to page> <number of pages>"
@@ -19,7 +20,7 @@ def get_pics(url)
         next if Pathname.new(name).absolute?
 
         copy = name.split('/').last
-        puts "Image found: " + copy
+        puts "Image found: ".green + copy
 
         begin
           File.open(copy, 'wb') do |f|
@@ -31,7 +32,7 @@ def get_pics(url)
               puts e
               next
             else
-              puts "Error"
+              puts "Error".red
               puts e
           end
         end
@@ -44,6 +45,7 @@ end
 start_page = 1
 while start_page <= total_pages.to_i
   url = url + "&page=#{start_page}"
+  puts "Getting from page: #{url}".green
   get_pics(url)
   start_page = start_page + 1
 end
